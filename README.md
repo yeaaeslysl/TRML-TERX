@@ -1,25 +1,43 @@
-# TRML / TERX
+# STRX
 
 > **官方仓库**：[https://github.com/yeaaeslysl/TRML-TERX](https://github.com/yeaaeslysl/TRML-TERX)
 
-TRML 是一款基于 Shizuku 的 Android 本地 MCP（Model Context Protocol）服务器应用，让 AI Agent 能够安全地远程操控手机终端、读写文件、查看图片并执行系统级命令。它采用纯 Java 原生实现，零 Python 依赖，通过 ADB 级权限提供比 Termux 更轻量的工具链调用能力，支持 SSE/HTTP 双通道传输与多客户端并发连接。
+STRX 是一款基于 Shizuku 的 Android 本地 MCP（Model Context Protocol）服务器应用，让 AI Agent 能够安全地远程操控手机终端、读写文件、查看图片并执行系统级命令。它采用纯 Java 原生实现，零 Python 依赖，通过 ADB 级权限提供比 Termux 更轻量的工具链调用能力，支持 SSE/HTTP 双通道传输与多客户端并发连接。
 
 项目内置完整的终端模拟器，配备 ExtraKeys 快捷键栏、六套预设主题（Nord / Monokai / Dracula / Solarized Dark / Light / Default）及自定义 HEX 配色系统，控制面板 UI 支持实时颜色预览与持久化。所有 MCP 工具调用均同步回显至终端，操作日志完整可追溯，安全黑名单机制拦截危险命令选项。
 
-TERX 是 TRML 的持久化增强分支，计划集成 proot + Linux rootfs，提供完整的包管理器（apt/pkg）、独立 `$PREFIX` 目录与用户级 rc 文件加载，使安装的软件、环境变量和别名在重启后依然生效，实现接近原生 Linux 的移动开发体验。
+STRX 集成 proot + Linux rootfs 持久化环境，提供完整的包管理器（apt/pkg）、独立 `$PREFIX` 目录与用户级 rc 文件加载，使安装的软件、环境变量和别名在重启后依然生效，实现接近原生 Linux 的移动开发体验。
 
 本项目面向 AI 辅助移动运维、自动化测试与嵌入式开发场景，代码开源、架构模块化，欢迎贡献新 Tool、主题或运行时后端。
 
 ---
 
-## 开源版本与官方分发版本
+## 版本沿革
 
-本项目同时存在两个形态：
+| 版本 | 定位 | 状态 |
+| :--- | :--- | :--- |
+| TRML | 基础版本 | 历史版本 |
+| TERX | 持久化增强分支（proot + Linux rootfs） | **已停止**，不再单独发布新版本 |
+| **STRX** | **TRML 与 TERX 的功能超集** | **当前版本** |
+
+TERX 的功能已全部并入 STRX，其源码保留于本仓库历史记录中。
+
+---
+
+## 维护状态
+
+**本项目已进入收尾阶段：仅修复缺陷，不再新增功能。**
+
+若遇到问题，欢迎前往 GitHub 提交 Issue。更建议你借助 AI 工具，自行阅读并修改本仓库的开源源码 —— 因为官方分发版本的技术实现与开源版本完全一致。
+
+---
+
+## 开源版本与官方分发版本
 
 | 形态 | 应用名 | 获取方式 | 说明 |
 | :--- | :--- | :--- | :--- |
-| **开源版本** | TRML / TERX | 自行从本仓库克隆源码编译 | 完全开源，可自由使用、修改、分发 |
-| **官方分发版本** | T'RML / T'ERX | 作者发布的官方签名安装包 | 与开源版本功能完全一致，仅额外包含首次启动告知流程与应用加固 |
+| **开源版本** | STRX | 自行从本仓库克隆源码编译 | 完全开源，可自由使用、修改、分发 |
+| **官方分发版本** | S'TRX | 作者发布的官方签名安装包 | 与开源版本功能完全一致，仅额外包含首次启动告知流程与应用加固 |
 
 **两个版本的技术实现完全相同，不存在任何未开源的隐藏功能或算法。**
 
@@ -40,13 +58,37 @@ TERX 是 TRML 的持久化增强分支，计划集成 proot + Linux rootfs，提
 -   **[DSHM (RochelimitDawn)](https://github.com/RochelimitDawn/DSHM)**
     -   主题架构设计思路（`ThemeStore.kt` + `SiliconLeapTheme.kt`）
     -   终端配色方案命名规范与色彩变量组织方式
-    -   proot + Linux rootfs 持久化环境设计方案（TERX 分支技术路线来源）
+    -   proot + Linux rootfs 持久化环境设计方案
 
 -   **[Moke (Briqt)](https://github.com/briqt/moke)**
     -   6 套终端配色数值移植（Nord / Monokai / Dracula / Solarized Dark / Light / Default）
     -   ExtraKeys 快捷键栏布局逻辑与按键映射表
     -   外观设置页分组结构与 HEX 颜色输入交互模式
     -   moke dark 配色体系作为控制面板默认深色主题基础
+
+### 运行时组件来源
+
+-   **[Termux (termux/termux-packages)](https://github.com/termux/termux-packages)**
+    -   proot 运行时及其依赖的来源，版本如下：
+        -   `proot` — 5.1.107.95
+        -   `libtalloc` — 2.4.3
+        -   `libandroid-shmem` — 0.7
+    -   上述二进制已内置进 APK，用户无需另行安装 Termux
+
+-   **Linux 发行版 minirootfs**
+    -   Alpine — [alpinelinux.org](https://dl-cdn.alpinelinux.org/alpine/)
+    -   Ubuntu — [cdimage.ubuntu.com](https://cdimage.ubuntu.com/ubuntu-base/)
+    -   Debian — [images.linuxcontainers.org](https://images.linuxcontainers.org/images/debian/)
+
+### 同类项目参考
+
+-   **[mcp-termux (PhoenixHairpin)](https://github.com/PhoenixHairpin/mcp-termux)**
+    -   shell 执行 / 包管理 / 环境检查的分层设计
+    -   `tools/list` 保持精简、用 `smart{tool,params}` 转发
+
+-   **[termux-mcp (termuxgpt)](https://github.com/termuxgpt/termux-mcp)**
+    -   相对路径自定位（`readlink /proc/self/exe`）
+    -   首次启动自动部署
 
 ### AI 平台与工具链
 
@@ -59,8 +101,8 @@ TERX 是 TRML 的持久化增强分支，计划集成 proot + Linux rootfs，提
 ## 友链
 
 -   [Linux.do 论坛](https://linux.do/)
--   [万象 API 中转站](https://mcp.babm.cn/user)
--   [万象 API 注册（邀请码 SVWFCKRJ）](https://mcp.babm.cn/register?invite=SVWFCKRJ)
+-   [万象 API 中转站](https://zc.babm.cn)
+-   [万象 API 注册（邀请码 LPar）](https://zc.babm.cn/sign-up?aff=LPar)
 
 > 邀请码自愿使用，不强制。
 
@@ -87,7 +129,7 @@ TERX 是 TRML 的持久化增强分支，计划集成 proot + Linux rootfs，提
 3. 对修改过的文件显著标注"已修改"；
 4. 保留原始仓库地址与 NOTICE 归属信息（如有）。
 
-同时，依据该协议第 6 条，本许可不授予 **TRML**、**TERX**、**T'RML**、**T'ERX** 等名称的商标使用权。您不得以本项目作者的名义进行推广、背书，或声称您的衍生版本为官方版本。
+同时，依据该协议第 6 条，本许可不授予 **STRX**、**S'TRX**（及历史名称 **TRML**、**TERX**、**T'RML**、**T'ERX**）等名称的商标使用权。您不得以本项目作者的名义进行推广、背书，或声称您的衍生版本为官方版本。
 
 我们欢迎任何人基于本项目进行二次开发与创新，但请务必保留作者的署名与出处。
 
