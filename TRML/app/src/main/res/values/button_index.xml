@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  界面可点击控件编号对照表（只读参考，不参与编译逻辑）
+  ① btnShizuku          请求 Shizuku 权限
+  ② btnOverlayPermission 申请悬浮窗权限
+  ③ btnFloatingToggle   显示悬浮球 / 隐藏悬浮球（随状态切换）
+  ④ btnScaleSmall       小 70%
+  ⑤ btnScaleMedium      中 85%
+  ⑥ btnScaleLarge       大 100%
+  ⑦ btnToggle           启动 MCP Server / 停止 MCP Server（随状态切换）
+  ⑧ btnTest             轻量自检（不执行命令）
+  ⑨ btnTestDeep         深度自检 id; uname -a
+  ⑩ btnCancelTest       取消
+  ⑪ btnClearLog         清空日志
+  ⑫ btnFlushLog         强制落盘
+  ⑬ btnExportLog        导出日志
+
+  非按钮但常改文字：
+  tvTitle     标题 Shizuku MCP
+  tvMcpState  MCP 状态文本
+  悬浮窗面板动态文本：tag_mcp_button / tag_mcp_state / tag_port_info
+-->
+<resources />

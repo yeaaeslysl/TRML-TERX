@@ -1,0 +1,22 @@
+# Gradle
+.gradle/
+build/
+
+# 本地配置（含本机 SDK 路径，不应提交）
+local.properties
+
+# IDE
+.idea/
+*.iml
+.DS_Store
+
+# 本项目工具产物
+.mobide/
+.mobide-mcp-backup/
+.mobide-mcp-trash/
+
+# 构建与签名产物
+*.apk
+*.aab
+*.jks
+*.keystore

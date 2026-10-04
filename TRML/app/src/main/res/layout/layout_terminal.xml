@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="?attr/colorSurface">
+
+    <!-- 终端主体区域 -->
+    <FrameLayout
+        android:id="@+id/terminal_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <com.termi.app.terminal.TerminalView
+            android:id="@+id/terminal_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
+    <!-- 终端快捷设置条：主题切换 + 字体大小 -->
+    <LinearLayout
+        android:id="@+id/terminal_settings_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:background="#FF161B22">
+
+        <Spinner
+            android:id="@+id/spTermTheme"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="字号"
+            android:textColor="#FFE6EDF3"
+            android:textSize="12sp"
+            android:paddingStart="8dp"
+            android:paddingEnd="4dp" />
+
+        <SeekBar
+            android:id="@+id/sbTermFontSize"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:max="20"
+            android:progress="4" />
+
+        <Button
+            android:id="@+id/btnHomeBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:text="回左下"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <!-- ExtraKeys 快捷键栏 -->
+    <com.termi.app.terminal.ExtraKeysView
+        android:id="@+id/extra_keys"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+</LinearLayout>

@@ -1,0 +1,39 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    buildFeatures {
+        aidl = true
+    }
+
+    namespace 'com.termi.app'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.termi.app"
+        minSdk 28
+        targetSdk 34
+        versionCode 3
+        versionName "1.2.3"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'dev.rikka.shizuku:api:13.1.5'
+    implementation 'dev.rikka.shizuku:provider:13.1.5'
+    implementation 'com.iqiyi.xcrash:xcrash-android-lib:3.0.0'
+}
