@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  STRX 启动动画页（每次启动均显示）。
+
+  与 OnboardingActivity 的区别：
+    - 本页【每次启动】都显示，作用是"后台初始化期间的过场"，
+      初始化完成（且达到最短显示时长）后自动进入下一屏；
+    - OnboardingActivity 仅【首次启动】显示，用于选环境包。
+
+  动画：S / T / R / X 四个字母依次从上方掉落并伴随轻微回弹，
+        落定后分割线展开，再淡出进入下一屏。
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/splashRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0E1116">
+
+    <!-- 字母区：拆成 4 个独立 View 才能各自做掉落动画 -->
+    <LinearLayout
+        android:id="@+id/logoRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:gravity="bottom"
+        android:clipChildren="false"
+        android:clipToPadding="false">
+
+        <TextView
+            android:id="@+id/tvSplash1"
+            style="@style/SplashLetter"
+            android:text="S" />
+
+        <TextView
+            android:id="@+id/tvSplash2"
+            style="@style/SplashLetter"
+            android:text="T" />
+
+        <TextView
+            android:id="@+id/tvSplash3"
+            style="@style/SplashLetter"
+            android:text="R" />
+
+        <TextView
+            android:id="@+id/tvSplash4"
+            style="@style/SplashLetter"
+            android:text="X" />
+    </LinearLayout>
+
+    <!-- 落定后展开的分割线 -->
+    <View
+        android:id="@+id/vSplashLine"
+        android:layout_width="140dp"
+        android:layout_height="2dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="96dp"
+        android:background="#C77DFF"
+        android:visibility="invisible" />
+
+    <!-- 底部状态文字 -->
+    <TextView
+        android:id="@+id/tvSplashHint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="64dp"
+        android:text="正在载入…"
+        android:textSize="13sp"
+        android:letterSpacing="0.08"
+        android:textColor="#6B7280" />
+
+</FrameLayout>

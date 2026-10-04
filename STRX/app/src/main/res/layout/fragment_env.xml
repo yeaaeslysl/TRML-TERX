@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  TERX 环境页：展示持久化 Linux 环境的状态、路径、占用大小，
+  并提供导入 / 卸载 / 重装入口。
+
+  设计原则：路径与大小必须对用户可见（用户能知道东西装在哪、占多大）。
+-->
+<com.termi.app.HorizontalFriendlyScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- ==================== 环境卡片（堆叠，左右滑动切换） ==================== -->
+        <!-- 由 EnvPageController 动态 inflate item_env_card 多份并堆叠；
+             clipChildren=false 让下层卡片能露出边缘形成层次感 -->
+        <FrameLayout
+            android:id="@+id/cardStack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="240dp"
+            android:clipChildren="false"
+            android:clipToPadding="false" />
+
+        <!-- 卡片滑动手势提示（指示点已移入卡片内部） -->
+        <TextView
+            android:id="@+id/tvCardHint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="← 左右滑动切换环境 →"
+            android:textSize="11sp"
+            android:textColor="#6E6A78" />
+
+        <!-- ==================== 操作按钮 ==================== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="16dp">
+
+            <Button
+                android:id="@+id/btnImport"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="导入环境包" />
+
+            <Button
+                android:id="@+id/btnUninstall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="卸载环境" />
+
+        </LinearLayout>
+
+        <!-- ==================== 进度区 ==================== -->
+        <LinearLayout
+            android:id="@+id/layoutProgress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="16dp"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tvProgress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="准备中…"
+                android:textSize="14sp"
+                android:textColor="?android:attr/textColorPrimary" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:max="100" />
+        </LinearLayout>
+
+        <!-- ==================== 环境日志 ==================== -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="环境日志"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="?android:attr/textColorPrimary" />
+
+        <TextView
+            android:id="@+id/tvEnvLog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="?attr/colorSurface"
+            android:padding="12dp"
+            android:text="(暂无日志)"
+            android:textSize="12sp"
+            android:typeface="monospace"
+            android:textIsSelectable="true"
+            android:textColor="?android:attr/textColorSecondary" />
+
+    </LinearLayout>
+</com.termi.app.HorizontalFriendlyScrollView>

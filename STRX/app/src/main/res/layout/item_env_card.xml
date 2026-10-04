@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  单个环境的信息卡片（由 EnvPageController 动态 inflate 多份，堆叠显示）。
+  配色：莫兰迪色系（低饱和、克制）。
+  注意：以下 id 会被动态创建的多份实例复用，故用代码查找"当前卡片"而非全局 findViewById。
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_env_card"
+    android:padding="18dp">
+
+    <!-- 标题行：环境名 + 当前使用中标记 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tvCardTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="环境名"
+            android:textSize="19sp"
+            android:textStyle="bold"
+            android:textColor="#DCD8E0" />
+
+        <TextView
+            android:id="@+id/tvCardActive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="● 使用中"
+            android:textSize="12sp"
+            android:textColor="#9E9AAE" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvCardState"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="状态：未安装"
+        android:textSize="15sp"
+        android:textColor="#B4B0BC" />
+
+    <TextView
+        android:id="@+id/tvCardDistro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="发行版：—"
+        android:textSize="15sp"
+        android:textColor="#B4B0BC" />
+
+    <TextView
+        android:id="@+id/tvCardLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="位置：—"
+        android:textSize="15sp"
+        android:textColor="#B4B0BC" />
+
+    <TextView
+        android:id="@+id/tvCardPath"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="路径：—"
+        android:textSize="13sp"
+        android:typeface="monospace"
+        android:textIsSelectable="true"
+        android:textColor="#8E8A98" />
+
+    <TextView
+        android:id="@+id/tvCardSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="占用：—"
+        android:textSize="15sp"
+        android:textColor="#B4B0BC" />
+
+    <TextView
+        android:id="@+id/tvCardProot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="proot：检测中…"
+        android:textSize="13sp"
+        android:textColor="#8E8A98" />
+
+    <!-- 查看已安装软件包（弹窗列表） -->
+    <Button
+        android:id="@+id/btnCardPkgs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:minHeight="0dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:text="查看已装软件包"
+        android:textSize="13sp" />
+
+    <!-- 底部：指示点（有几个环境就几个点，当前项高亮） -->
+    <TextView
+        android:id="@+id/tvCardDots"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:gravity="center_horizontal"
+        android:text=""
+        android:textSize="11sp"
+        android:letterSpacing="0.3"
+        android:textColor="#9E9AAE" />
+
+</LinearLayout>

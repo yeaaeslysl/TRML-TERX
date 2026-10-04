@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.termi.app">
+
+    <uses-sdk
+        android:minSdkVersion="28"
+        android:targetSdkVersion="34" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!-- TERX：外置存储安装位置需要「所有文件访问」（Android 11+ 分区存储）。
+         仅当用户选择外置存储时引导授权；App 私有目录不需要。 -->
+    <uses-permission
+        android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+
+    <application
+        android:name=".TermiApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!-- 启动动画（每次启动）→ 后台初始化 → 分流至引导页或主界面 -->
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 启动路由（保留，供需要时直接分流） -->
+        <activity
+            android:name=".LauncherActivity"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme" />
+
+        <!-- 启动引导页（首次启动 / 彩蛋重温） -->
+        <activity
+            android:name=".OnboardingActivity"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme" />
+
+        <service
+            android:name=".McpService"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
+
+        <provider
+            android:name="rikka.shizuku.ShizukuProvider"
+            android:authorities="${applicationId}.shizuku"
+            android:enabled="true"
+            android:exported="true"
+            android:multiprocess="false"
+            android:permission="android.permission.INTERACT_ACROSS_USERS_FULL" />
+            <provider
+            android:name="com.yfapp.mobide.logsender.utils.LogSenderInstaller"
+            android:authorities="${applicationId}.logsender-installer"
+            android:enabled="@bool/logsender_enabled"
+            android:exported="false" />
+
+        <service
+            android:name="com.yfapp.mobide.logsender.LogSenderService"
+            android:foregroundServiceType="dataSync"
+            android:exported="false" />
+</application>
+
+
+    <queries>
+        <package android:name="com.yfapp.mobide" />
+    </queries>
+    <uses-permission android:name="com.yfapp.mobide.permission.BIND_LOG_SERVICE" />
+
+</manifest>

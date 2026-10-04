@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- logsender_enabled 由 res/values/mobide_logsender.xml 提供，此处不再重复定义，避免 Duplicate resources -->
+</resources>

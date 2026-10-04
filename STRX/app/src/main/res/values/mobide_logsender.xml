@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  logsender 库自带的资源。文件名与其它 values 文件不冲突，
+  可安全并入被调试工程的 res/values 而不用合并同名文件。
+-->
+<resources>
+    <string name="msg_bind_service_failed">Failed to bind to MobIDE</string>
+    <string name="notification_action_exit">Exit</string>
+    <bool name="logsender_enabled">true</bool>
+</resources>

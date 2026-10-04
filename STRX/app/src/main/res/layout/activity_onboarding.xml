@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  TERX 启动引导页（Onboarding）。
+
+  两页结构（上滑切换）：
+    第 1 页：大 TERX + 动画 + 简介
+    第 2 页：上方选择环境包 / 下方解压进度（分屏）
+
+  设计参考 Telegram 引导页：ViewPager 式拖拽 + 属性动画，零第三方依赖。
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/onboardingRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0E1116">
+
+    <ViewFlipper
+        android:id="@+id/onboardingFlipper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- ==================== 第 1 页：品牌 ==================== -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:padding="32dp">
+
+                <!-- 大 STRX（动画目标：淡入 + 缩放） -->
+                <TextView
+                    android:id="@+id/tvLogo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="STRX"
+                    android:textSize="72sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.12"
+                    android:fontFamily="@font/chuangkit_gang"
+                    android:textColor="#C77DFF"
+                    android:shadowColor="#B3C77DFF"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="28" />
+
+                <!-- 分隔线（动画目标：横向展开） -->
+                <View
+                    android:id="@+id/vLogoLine"
+                    android:layout_width="120dp"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#C77DFF" />
+
+                <!-- 副标题 -->
+                <TextView
+                    android:id="@+id/tvSlogan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="持久化 Linux 环境"
+                    android:textSize="18sp"
+                    android:textColor="#E5E7EB"
+                    android:gravity="center" />
+
+                <TextView
+                    android:id="@+id/tvSlogan2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="基于 Shizuku 的本地 MCP Server"
+                    android:textSize="14sp"
+                    android:textColor="#9CA3AF"
+                    android:gravity="center" />
+
+            </LinearLayout>
+
+            <!-- 上滑提示（纯文字，无箭头） -->
+            <LinearLayout
+                android:id="@+id/layoutSwipeHint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="48dp"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="上滑继续"
+                    android:textSize="14sp"
+                    android:letterSpacing="0.08"
+                    android:textColor="#9CA3AF" />
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <!-- ==================== 第 2 页：选包 + 进度（分屏） ==================== -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <!-- 上半：选择环境包 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="选择环境包"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:textColor="#E5E7EB" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="从本地选择 Linux 环境包（支持 .tar.gz / .tar.xz）。\n全程离线，不需要联网。"
+                    android:textSize="14sp"
+                    android:lineSpacingExtra="4dp"
+                    android:textColor="#9CA3AF" />
+
+                <Button
+                    android:id="@+id/btnPickEnv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    android:paddingTop="14dp"
+                    android:paddingBottom="14dp"
+                    android:text="选择环境包"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tvPickedName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="尚未选择"
+                    android:textSize="13sp"
+                    android:typeface="monospace"
+                    android:textColor="#6B7280" />
+
+            </LinearLayout>
+
+            <!-- 分隔 -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#1F2937" />
+
+            <!-- 下半：进度 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tvOnboardStage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="等待选择环境包"
+                    android:textSize="15sp"
+                    android:textColor="#E5E7EB" />
+
+                <ProgressBar
+                    android:id="@+id/onboardProgress"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:max="100" />
+
+                <TextView
+                    android:id="@+id/tvOnboardLog"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="12dp"
+                    android:background="#151A21"
+                    android:padding="10dp"
+                    android:text=""
+                    android:textSize="11sp"
+                    android:typeface="monospace"
+                    android:textColor="#6B7280"
+                    android:scrollbars="vertical" />
+
+                <Button
+                    android:id="@+id/btnEnter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:text="进入 STRX"
+                    android:textSize="16sp"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- 重温模式的关闭按钮（右上角，灰底白叉）
+             必须是 FrameLayout 的直接子元素，layout_gravity 才会按"容器"定位；
+             若放在垂直 LinearLayout 内，会被前面的 weight 区域挤到底部。 -->
+        <TextView
+            android:id="@+id/btnCloseReview"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="top|end"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/bg_review_close"
+            android:gravity="center"
+            android:text="✕"
+            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:visibility="gone" />
+
+        </FrameLayout>
+
+    </ViewFlipper>
+
+</FrameLayout>

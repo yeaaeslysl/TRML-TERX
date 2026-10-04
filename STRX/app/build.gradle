@@ -1,0 +1,50 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    buildFeatures {
+        aidl = true
+    }
+
+    namespace 'com.termi.app'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.sterni.app"
+        minSdk 28
+        targetSdk 34
+        versionCode 3
+        versionName "1.2.3"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    packaging {
+        jniLibs {
+            // 把 jniLibs 里的 .so 解包成 nativeLibraryDir 下的真实文件，
+            // 使其可被 exec 执行（App 私有目录被系统禁止执行程序）。
+            // proot 二进制与 loader 依赖此配置才能启动。
+            useLegacyPackaging = true
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'dev.rikka.shizuku:api:13.1.5'
+    implementation 'dev.rikka.shizuku:provider:13.1.5'
+    implementation 'com.iqiyi.xcrash:xcrash-android-lib:3.0.0'
+    implementation 'org.apache.commons:commons-compress:1.26.2'
+    implementation 'org.tukaani:xz:1.10'
+}

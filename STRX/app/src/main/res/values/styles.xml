@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="backgroundTint">@color/primary</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="AppEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textColorHint">@color/moke_muted</item>
+        <item name="android:backgroundTint">@color/moke_outline</item>
+    </style>
+
+    <!-- 启动动画的单个字母（S/T/R/X） -->
+    <style name="SplashLetter">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">64sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/chuangkit_gang</item>
+        <item name="android:textColor">#C77DFF</item>
+        <item name="android:shadowColor">#B3C77DFF</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">0</item>
+        <item name="android:shadowRadius">24</item>
+        <item name="android:paddingStart">2dp</item>
+        <item name="android:paddingEnd">2dp</item>
+    </style>
+</resources>

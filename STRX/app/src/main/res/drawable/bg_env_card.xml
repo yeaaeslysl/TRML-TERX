@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  环境卡片背景（莫兰迪色系）：
+  低饱和灰蓝紫底 + 柔和同色系描边，克制不刺眼。
+  参考色：底 #2A2A33（莫兰迪深灰蓝），描边 #6B6880（雾紫灰，低饱和）。
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#F22A2A33" />
+    <corners android:radius="16dp" />
+    <stroke
+        android:width="1dp"
+        android:color="#806B6880" />
+</shape>

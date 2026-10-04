@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Moke Dark Theme Colors -->
+    <color name="moke_bg">#FF0E1116</color>
+    <color name="moke_surface">#FF161B22</color>
+    <color name="moke_surface_variant">#FF21262D</color>
+    <color name="moke_ink">#FFE6EDF3</color>
+    <color name="moke_jade">#FF7FE3C4</color>
+    <color name="moke_muted">#FF8B949E</color>
+    <color name="moke_danger">#FFF07178</color>
+    <color name="moke_outline">#FF5A6572</color>
+
+    <!-- Legacy aliases -->
+    <color name="primary">#FF7FE3C4</color>
+    <color name="primary_dark">#FF0E1116</color>
+    <color name="accent">#FF7FE3C4</color>
+    <color name="background">#FF0E1116</color>
+    <color name="surface">#FF161B22</color>
+    <color name="text_primary">#FFE6EDF3</color>
+    <color name="launcher_bg">#FF7FE3C4</color>
+</resources>
