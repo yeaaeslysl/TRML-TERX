@@ -2,7 +2,7 @@
 
 > **官方仓库**：[https://github.com/yeaaeslysl/TRML-TERX](https://github.com/yeaaeslysl/TRML-TERX)
 
-> **教程说明**：[https://trello.com/b/b2tahwPQ/a](教程说明)
+> **教程说明**：[使用问题解答](https://trello.com/b/b2tahwPQ/a)
 
 STRX 是一款基于 Shizuku 的 Android 本地 MCP（Model Context Protocol）服务器应用，让 AI Agent 能够安全地远程操控手机终端、读写文件、查看图片并执行系统级命令。它采用纯 Java 原生实现，零 Python 依赖，通过 ADB 级权限提供比 Termux 更轻量的工具链调用能力，支持 SSE/HTTP 双通道传输与多客户端并发连接。
 
